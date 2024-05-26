@@ -1,5 +1,5 @@
 [tool.poetry]
-name = "nba-data-preprocessing"
+name = ""
 version = "0.1.0"
 description = "NBA data preprocessing with Pandas"
 authors = ["wisskirchenj <wisskirchen.juergen@gmail.com>"]
