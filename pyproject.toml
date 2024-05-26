@@ -1,8 +1,9 @@
 [tool.poetry]
-name = ""
+name = "nba-data-processing"
 version = "0.1.0"
 description = "NBA data preprocessing with Pandas"
 authors = ["wisskirchenj <wisskirchen.juergen@gmail.com>"]
+package-mode = "false"
 readme = "README.md"
 
 [tool.poetry.dependencies]

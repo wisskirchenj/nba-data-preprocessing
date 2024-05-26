@@ -29,4 +29,3 @@ class TestCleanData:
         assert df['country'].iloc[0] == 'USA'
         assert df['country'].iloc[1] == 'Not-USA'
         assert df['draft_round'].iloc[1] == '0'
-
