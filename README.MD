@@ -32,3 +32,5 @@ Have fun!
 27.05.24 Project started. Stage 2 completed - Process, transform and drop some columns.
 
 29.05.24 Stage 3 completed - Multicollinearity columns suppressed.
+
+29.05.24 Final Stage 4 completed - scaling and encoding of numerical and categorical columns.

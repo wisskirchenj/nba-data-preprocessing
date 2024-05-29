@@ -1,5 +1,6 @@
 import numpy as np
 import pandas as pd
+from sklearn.preprocessing import StandardScaler, OneHotEncoder
 
 
 class Preprocessor:
@@ -9,7 +10,12 @@ class Preprocessor:
         df: pd.DataFrame = self.clean_data(path)
         df = self.feature_data(df)
         df = self.multicol_data(df)
-        print(list(df.select_dtypes('number').drop(columns='salary')))
+        X, y = self.transform_data(df)
+        answer = {
+            'shape': [X.shape, y.shape],
+            'features': list(X.columns),
+        }
+        print(answer)
 
     def clean_data(self, path) -> pd.DataFrame:
         df = pd.read_csv(path)
@@ -42,6 +48,13 @@ class Preprocessor:
             if pair[0] in df.columns and pair[1] in df.columns:
                 df = df.drop(columns=df[[target, *pair]].corr()[target].idxmin())
         return df
+
+    def transform_data(self, df: pd.DataFrame) -> tuple[pd.DataFrame, pd.Series]:
+        num_cols = df.drop(columns='salary').select_dtypes('number')
+        numerical = pd.DataFrame(StandardScaler().fit_transform(num_cols), columns=num_cols.columns)
+        encoder = OneHotEncoder(sparse_output=False)
+        categorical = pd.DataFrame(encoder.fit_transform(df.select_dtypes('object')), columns=np.block(encoder.categories_))
+        return pd.concat([numerical, categorical], axis=1), df['salary']
 
 
 if __name__ == '__main__':

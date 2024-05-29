@@ -1,5 +1,7 @@
+import numpy as np
 import pandas as pd
 from preprocess import Preprocessor
+import pytest
 
 
 class TestCleanData:
@@ -91,3 +93,29 @@ class TestCleanData:
         df = pd.DataFrame(data)
         result_df = preprocessor.multicol_data(df)
         assert result_df.equals(df)
+
+    #  correctly scales numerical columns using StandardScaler
+    def test_correctly_scales_numerical_columns(self):
+        preprocessor = Preprocessor()
+        df = pd.DataFrame({
+            'cat1': ['A', 'B', 'A', 'V'],
+            'num1': [1, 2, 3, 4],
+            'num2': [4, 5, 6, 7],
+            'salary': [1000, 2000, 3000, 4000]
+        })
+        X, y = preprocessor.transform_data(df)
+        assert np.allclose(X[['num1', 'num2']].mean(), 0), "Numerical columns are not scaled correctly"
+        pytest.approx(df['salary'], y)
+
+    #  correctly encodes categorical columns using OneHotEncoder
+    def test_correctly_encodes_categorical_columns(self):
+        preprocessor = Preprocessor()
+        df = pd.DataFrame({
+            'num1': [1, 2, 4],
+            'cat1': ['A', 'B', 'A'],
+            'cat2': ['X', 'Y', 'X'],
+            'salary': [1000, 2000, 3000]
+        })
+        X, y = preprocessor.transform_data(df)
+        expected_columns = ['A', 'B', 'X', 'Y']
+        assert all(col in X.columns for col in expected_columns), "Categorical columns are not encoded correctly"
