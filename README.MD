@@ -28,3 +28,7 @@ Have fun!
 [//]: # (Project was completed on 10.05.24)
 
 26.05.24 Project started. Repo setup with Poetry. Stage 1 completed - Basic preprocessing of NBA data with Pandas.
+
+27.05.24 Project started. Stage 2 completed - Process, transform and drop some columns.
+
+29.05.24 Stage 3 completed - Multicollinearity columns suppressed.

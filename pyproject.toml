@@ -1,9 +1,9 @@
 [tool.poetry]
-name = "nba-data-processing"
+name = "nba-data-preprocessing"
 version = "0.1.0"
 description = "NBA data preprocessing with Pandas"
 authors = ["wisskirchenj <wisskirchen.juergen@gmail.com>"]
-package-mode = false
+package-mode = false  # If true, the package will be installed as a package, not a project.
 readme = "README.md"
 
 [tool.poetry.dependencies]
