@@ -25,7 +25,7 @@ Have fun!
 
 ## Project progress
 
-[//]: # (Project was completed on 10.05.24)
+Project was completed on 29.05.24
 
 26.05.24 Project started. Repo setup with Poetry. Stage 1 completed - Basic preprocessing of NBA data with Pandas.
 
